@@ -353,3 +353,121 @@ p5 <- ggplot(data.frame(x, y_moderate_neg), aes(x, y_moderate_neg)) +
 grid.arrange(p2, p5, p0, p3, p4, p1, ncol = 6)
 
 ```
+
+---
+class: inverse
+
+## Your turn
+
+.pull-l[
+
+- 13 data sets
+
+
+
+
+
+]
+
+---
+class: inverse
+
+## Your turn
+
+.pull-l[
+
+- 13 data sets
+
+- Each of the 13 datasets contains X and Y variables 
+
+
+
+]
+
+---
+class: inverse
+
+# Your turn
+
+.pull-l[
+
+- 13 data sets
+
+- Each of the 13 datasets contains X and Y variables. 
+
+- The corresponding scatterplots are shown below here: 👉
+
+]
+
+.pull-r[
+
+```{r, echo=FALSE, fig.height=15, fig.width=15}
+knitr::include_graphics("img/scatter.png")
+```
+
+]
+
+---
+class: inverse
+
+# Your turn
+
+.pull-l[
+
+- 13 data sets
+
+- Each of the 13 datasets contains X and Y variables. 
+
+- The corresponding scatterplots are shown below here: 👉
+
+## Which dataset has the highest correlation coefficient?
+
+]
+
+.pull-r[
+
+```{r, echo=FALSE, fig.height=15, fig.width=15}
+knitr::include_graphics("img/scatter.png")
+```
+
+]
+
+---
+
+.pull-left[
+
+```{r, echo=FALSE, fig.height=15, fig.width=15}
+knitr::include_graphics("img/scatter.png")
+```
+
+
+]
+
+
+.pull-right[
+
+![](img/DataSaurus.gif)
+
+]
+
+---
+
+.pull-left[
+
+```{r, echo=FALSE, fig.height=15, fig.width=15}
+knitr::include_graphics("img/scatter.png")
+```
+
+
+]
+
+
+.pull-right[
+
+![](img/DataSaurus.gif)
+
+]
+
+## Do not believe summary statistics on their own. 
+
+## Always visualize your data for a complete understanding
