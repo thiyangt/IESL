@@ -1,0 +1,64 @@
+---
+title: "Statistics and Data Science Applications for Engineers"
+subtitle: "Dr. Thiyanga S. Talagala"
+author: "Department of Statistics, University of Sri Jayewardenepura"
+date: "2024 - 09 - 28 <br><br><br> 
+<span style='color:#d95f02;'>Webinar jointly organized by</span> <br><br>
+<span style='color:#d95f02;'>Institute of Engineers, Sri Lanka (IESL) and </span>  <br><br> 
+<span style='color:#d95f02;'>Institute of Applied Statistics, Sri Lanka (IASSL)</span>"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: 
+      - default
+      - default-fonts
+      - duke-blue
+      - hygge-duke
+      - libs/cc-fonts.css
+      - libs/figure-captions.css
+      - xaringan-themer.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#081d58",
+  text_bold_color = "#ce1256",
+  title_slide_text_color = "#edf8b1",
+ # header_font_google = google_font("Josefin Sans"),
+  base_font_size = "17px",
+#  text_font_size = "1rem",
+# code_font_size = "1rem"
+ #text_font_google   = google_font("Montserrat", "300", "300i")
+ # code_font_google   = google_font("Fira Mono")
+)
+```
+
+
+```{r setup, include=FALSE}
+library(knitr)
+options(htmltools.dir.version = FALSE)
+#read_chunk("src/main.R")
+library(ggplot2)
+library(patchwork)
+library(reshape2)
+library(grid)
+library(gridExtra)
+library(ggrepel)
+library(png)
+library(tsfeatures)
+library(tidyverse)
+library(ggpubr)
+library(RColorBrewer)
+library(dplyr)
+library(forecast)
+library(tidyr)
+library(rlang)
+library(tidyverse)
+library(tsfeatures)
+```
