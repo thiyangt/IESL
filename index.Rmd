@@ -17,6 +17,7 @@ output:
       - libs/cc-fonts.css
       - libs/figure-captions.css
       - xaringan-themer.css
+      - styles.css
     nature:
       highlightStyle: github
       highlightLines: true
@@ -28,11 +29,11 @@ output:
 library(xaringanthemer)
 style_mono_accent(
   base_color = "#081d58",
-  text_bold_color = "#4d004b",
+  text_bold_color = "#e7298a",
   title_slide_text_color = "#edf8b1",
  # header_font_google = google_font("Josefin Sans"),
   base_font_size = "17px",
-#  text_font_size = "1rem",
+  text_font_size = "1rem",
  code_font_size = "1rem",
  #text_font_google   = google_font("Montserrat", "300", "300i")
   code_font_google   = google_font("Fira Mono")
@@ -115,7 +116,7 @@ background-size: cover
 </div>
 ---
 
-.pull-left[
+.pull-l[
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE, comment=""}
 set.seed(42)
@@ -148,13 +149,13 @@ final_data
 
 ]
 
-.pull-right[
+.pull-r[
 
 
 ]
 
 ---
-.pull-left[
+.pull-l[
 
 ```{r, echo=FALSE, comment=NA}
 final_data
@@ -162,14 +163,14 @@ final_data
 
 ]
 
-.pull-right[
+.pull-r[
 
 
 # What patterns or insights can you identify from the data? 
 ]
 
 ---
-.pull-left[
+.pull-l[
 
 ```{r, echo=FALSE, comment=NA}
 final_data
@@ -177,7 +178,7 @@ final_data
 
 ]
 
-.pull-right[
+.pull-r[
 
 
 # What patterns or insights can you identify from the data? 
@@ -195,7 +196,7 @@ final_data |>
 
 ---
 
-.pull-left[
+.pull-l[
 
 ```{r, echo=FALSE, comment=NA}
 final_data
@@ -203,7 +204,7 @@ final_data
 
 ]
 
-.pull-right[
+.pull-r[
 
 
 # What patterns or insights can you identify from the data? 
@@ -213,14 +214,14 @@ final_data |>
   group_by(Species)|>
   summarise(round(mean(Stress_MPa),2),
             round(sd(Stress_MPa),2),) |>
-  knitr::kable(col.names = c("Species", "Mean Stress (MPa)", "Standard Deviation (MPa)")) |>
+  knitr::kable(col.names = c("Species", "Mean of Maximum Stress (MPa)", "Standard Deviation (MPa)")) |>
   kable_styling(font_size = 30)
 ```
 ]
 
 ---
 
-.pull-left[
+.pull-l[
 
 ```{r, echo=FALSE, comment=NA}
 final_data
@@ -228,7 +229,7 @@ final_data
 
 ]
 
-.pull-right[
+.pull-r[
 
 
 ```{r, echo=FALSE, fig.height=6, fig.width=7, warning=FALSE, message=FALSE}
@@ -236,7 +237,7 @@ final_data |>
   group_by(Species)|>
   summarise(round(mean(Stress_MPa),2),
             round(sd(Stress_MPa),2),) |>
-  knitr::kable(col.names = c("Species", "Mean Stress (MPa)", "Standard Deviation (MPa)")) |>
+  knitr::kable(col.names = c("Species", "Mean of Maximum Stress (MPa)", "Standard Deviation (MPa)")) |>
   kable_styling(font_size = 20)
 
 p1 <- ggplot(final_data, aes(x = Species, y = Stress_MPa, col = Species)) +
@@ -244,10 +245,111 @@ p1 <- ggplot(final_data, aes(x = Species, y = Stress_MPa, col = Species)) +
   stat_summary(fun = mean, geom = "point", color = "black", size = 4, shape=2) +  
  # stat_summary(fun = mean, geom = "text", aes(label = round(..y.., 2)), 
 #               color = "black", vjust = -1, size = 5) +  
-  labs(x = "Species", y = "Stress (MPa)", col = "Species") +  
+  labs(x = "Species", y = "Maximum Stress (MPa)", col = "Species") +  
 ggtitle("Individual Value Plot of Stress by Species") +
   scale_color_brewer(palette = "Dark2")
 ggplotly(p1)
 ```
 ]
 
+---
+
+.pull-l[
+
+```{r, echo=FALSE, comment=NA}
+final_data
+```
+
+]
+
+.pull-r[
+
+
+```{r, echo=FALSE, fig.height=7, fig.width=10, warning=FALSE, message=FALSE}
+p2 <- ggplot(final_data, aes(x=Cycle, y=Stress_MPa, col=Species)) + geom_point() +   scale_color_brewer(palette = "Dark2") + ggtitle("Scatterplot of Maximum Stress (MPa) vs Number of Cycles") + labs(x="Number of Cycles", y="Maximum Stress (MPa)")
+ggplotly(p2)
+```
+]
+
+---
+
+
+.pull-l[
+
+```{r, echo=FALSE, comment=NA}
+final_data
+```
+
+]
+
+.pull-r[
+
+
+```{r, echo=FALSE, fig.height=7, fig.width=10, warning=FALSE, message=FALSE}
+p2 <- ggplot(final_data, aes(x=Cycle, y=Stress_MPa, col=Species)) + geom_point() +   scale_color_brewer(palette = "Dark2") + ggtitle("Scatterplot of Maximum Stress (MPa) vs Number of Cycles") + labs(x="Number of Cycles", y="Maximum Stress (MPa)")
+ggplotly(p2)
+```
+
+```{r, echo=FALSE}
+final_data |> 
+  group_by(Species)|> 
+  summarise(round(cor(Cycle, Stress_MPa), 2)) |>
+    knitr::kable(col.names = c("Species", "Pearson correlation coefficient")) |>
+  kable_styling(font_size = 20)
+```
+
+]
+
+---
+
+# Pearson Correlation Coefficient (r)
+
+- Measures the **strength and direction** of a **linear** relationship between two continuous variables.
+
+- Its value ranges from -1 to 1.
+
+```{r, echo=FALSE, fig.width=15, fig.height=3}
+set.seed(1228)
+# Generate data
+set.seed(42)
+x <- seq(-10, 10, length.out = 100)
+y_perfect_pos <- x
+y_perfect_neg <- -x
+y_no_corr <- x^2
+y_moderate_pos <- 0.5 * x + rnorm(100, 0, 3)
+y_moderate_neg <- -0.5 * x + rnorm(100, 0, 3)
+
+no <- data.frame(x=rnorm(100), y=rnorm(100)) 
+
+# Create plots for different correlations
+p0 <- ggplot(no, aes(x, y)) + 
+  geom_point() + ggtitle("r = 0\nNo Relationship") +
+  labs(y="Y", x="X")+
+  theme(aspect.ratio = 1) 
+
+
+p1 <- ggplot(data.frame(x, y_perfect_pos), aes(x, y_perfect_pos)) + 
+  geom_point() + ggtitle("r = 1\n Perfect Positive\nLinear Relationship)") +
+  labs(y="Y", x="X")+
+  theme(aspect.ratio = 1) 
+
+p2 <- ggplot(data.frame(x, y_perfect_neg), aes(x, y_perfect_neg)) + 
+  geom_point() + ggtitle("r = -1\nPerfect Negative\nLinear Relationship)") +labs(y="Y", x="X")+
+  theme(aspect.ratio = 1) 
+
+p3 <- ggplot(data.frame(x, y_no_corr), aes(x, y_no_corr)) + 
+  geom_point() + ggtitle("r = 0\nNo Linear Relationship") + labs(y="Y", x="X")+
+  theme(aspect.ratio = 1) 
+
+p4 <- ggplot(data.frame(x, y_moderate_pos), aes(x, y_moderate_pos)) + 
+  geom_point() + ggtitle("0 < r < 1\nModerate Positive\nLinear Relationship") +labs(y="Y", x="X")+
+  theme(aspect.ratio = 1) 
+
+p5 <- ggplot(data.frame(x, y_moderate_neg), aes(x, y_moderate_neg)) + 
+  geom_point() + ggtitle("-1 < r < 0\nModerate Negative\nLinear Relationship") +labs(y="Y", x="X")+
+  theme(aspect.ratio = 1) 
+
+# Arrange the plots in a grid
+grid.arrange(p2, p5, p0, p3, p4, p1, ncol = 6)
+
+```

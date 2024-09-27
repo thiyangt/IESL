@@ -1,0 +1,14 @@
+.pull-l{
+  float: left;
+  width: 40%;
+}
+.pull-r{
+  float: right;
+  width: 60%;
+}
+
+
+/* Increase font size for slide content */
+.remark-slide-content {
+    font-size: 30px;
+}
