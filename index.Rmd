@@ -75,11 +75,35 @@ background-image: url("img/pinwheels.jpg")
 background-size: cover
 
 <div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: ##feb24c; font-size: 40px; color: black; font-weight: bold;">
-  <p>This is a box with bold font, larger size, and black text. You can customize the appearance as needed.</p>
+  <p> Whether timber can be successfully used as a material for small wind turbine blades</p>
+</div>
+---
+class: title-slide, top, left, inverse
+background-image: url("img/pinwheels.jpg")
+background-size: cover
+
+<div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: ##feb24c; font-size: 40px; color: black; font-weight: bold;">
+  <p> Whether timber can be successfully used as a material for small wind turbine blades</p>
 </div>
 
-  
+<div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: #a1d99b; font-size: 40px; color: black; font-weight: bold;">
+  <p> Two readily available Australian
+grown softwood timber species, radiata pine and hoop pine, were selected. </p>
+</div>
 
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/pinwheels.jpg")
+background-size: cover
+
+<div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: ##feb24c; font-size: 40px; color: black; font-weight: bold;">
+  <p> Whether timber can be successfully used as a material for small wind turbine blades</p>
+</div>
+
+<div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: black; font-size: 30px; color: white; font-weight: bold;">
+  <p> Peterson P, Clausen PD. Timber for high efficiency small wind turbine blades. Wind Engineering. 2004 Jan;28(1):87-96. </p>
+</div>
 ---
 
 .pull-left[
