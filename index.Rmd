@@ -45,23 +45,19 @@ style_mono_accent(
 library(knitr)
 options(htmltools.dir.version = FALSE)
 #read_chunk("src/main.R")
-library(ggplot2)
 library(patchwork)
-library(reshape2)
 library(grid)
 library(gridExtra)
 library(ggrepel)
 library(png)
-library(tsfeatures)
-library(tidyverse)
 library(ggpubr)
 library(RColorBrewer)
-library(dplyr)
 library(forecast)
-library(tidyr)
 library(rlang)
 library(tidyverse)
 library(tsfeatures)
+library(kableExtra)
+library(plotly)
 ```
 
 
@@ -102,7 +98,7 @@ background-size: cover
 </div>
 
 <div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: black; font-size: 30px; color: white; font-weight: bold;">
-  <p> Peterson P, Clausen PD. Timber for high efficiency small wind turbine blades. Wind Engineering. 2004 Jan;28(1):87-96. </p>
+  <p> Peterson P, Clausen PD. Timber for high efficiency small wind turbine blades. Wind Engineering. 2004 Jan; 28(1): 87-96. </p>
 </div>
 
 ---
@@ -114,8 +110,8 @@ background-size: cover
   <p> Whether timber can be successfully used as a material for small wind turbine blades</p>
 </div>
 
-<div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: black; font-size: 30px; color: white; font-weight: bold;">
-  <p> Simulated Data Set </p>
+<div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: #49006a; font-size: 27px; color: white; font-weight: bold;">
+  <p> Simulated Data Set inspired from  Peterson and Clausen (2004)   </p>
 </div>
 ---
 
@@ -172,17 +168,12 @@ final_data
 # What patterns or insights can you identify from the data? 
 ]
 
-
 ---
-```{r}
-library(ggplot2)
-ggplot(data=final_data, aes(y=Stress_MPa, x=Cycle, col=Species)) +geom_point()
-
-```
----
-
 .pull-left[
 
+```{r, echo=FALSE, comment=NA}
+final_data
+```
 
 ]
 
@@ -190,7 +181,73 @@ ggplot(data=final_data, aes(y=Stress_MPa, x=Cycle, col=Species)) +geom_point()
 
 
 # What patterns or insights can you identify from the data? 
+
+```{r, echo=FALSE}
+final_data |> 
+  group_by(Species)|>
+  summarise(round(mean(Stress_MPa),2)) |>
+  knitr::kable(col.names = c("Species", "Mean Stress (MPa)")) |>
+  kable_styling(font_size = 30)
+```
+
+
 ]
 
 ---
+
+.pull-left[
+
+```{r, echo=FALSE, comment=NA}
+final_data
+```
+
+]
+
+.pull-right[
+
+
+# What patterns or insights can you identify from the data? 
+
+```{r, echo=FALSE}
+final_data |> 
+  group_by(Species)|>
+  summarise(round(mean(Stress_MPa),2),
+            round(sd(Stress_MPa),2),) |>
+  knitr::kable(col.names = c("Species", "Mean Stress (MPa)", "Standard Deviation (MPa)")) |>
+  kable_styling(font_size = 30)
+```
+]
+
+---
+
+.pull-left[
+
+```{r, echo=FALSE, comment=NA}
+final_data
+```
+
+]
+
+.pull-right[
+
+
+```{r, echo=FALSE, fig.height=6, fig.width=7, warning=FALSE, message=FALSE}
+final_data |> 
+  group_by(Species)|>
+  summarise(round(mean(Stress_MPa),2),
+            round(sd(Stress_MPa),2),) |>
+  knitr::kable(col.names = c("Species", "Mean Stress (MPa)", "Standard Deviation (MPa)")) |>
+  kable_styling(font_size = 20)
+
+p1 <- ggplot(final_data, aes(x = Species, y = Stress_MPa, col = Species)) +
+  geom_point(size=3) +
+  stat_summary(fun = mean, geom = "point", color = "black", size = 4, shape=2) +  
+ # stat_summary(fun = mean, geom = "text", aes(label = round(..y.., 2)), 
+#               color = "black", vjust = -1, size = 5) +  
+  labs(x = "Species", y = "Stress (MPa)", col = "Species") +  
+ggtitle("Individual Value Plot of Stress by Species") +
+  scale_color_brewer(palette = "Dark2")
+ggplotly(p1)
+```
+]
 
