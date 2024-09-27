@@ -493,6 +493,7 @@ background-image: url("img/pop3.png")
 background-size: cover
 
 ---
+class: inverse, center, middle
 
 # Hypothesis testing
 
@@ -510,3 +511,87 @@ background-size: cover
 class: title-slide, top, left, inverse
 background-image: url("img/hy3.png")
 background-size: cover
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/electricity.jpg")
+background-size: contain
+
+
+
+## Electricity Demand Forecasting for Grama Niladhari Divisions	(14,018) in Sri Lanka
+
+
+
+---
+
+## Number of series: 1
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=NA}
+library(tidyverse)
+library(coronavirus)
+coronavirus <- coronavirus %>% mutate(cases = replace(cases, which(cases<0), NA))
+coronavirus <- coronavirus %>% mutate(cases = replace(cases, which(cases>800000), 800))
+#confirmed <- coronavirus %>% filter(type == "confirmed")
+confirmed <- coronavirus %>% 
+  filter(type == "confirmed") %>%
+  group_by(country, date) %>%
+  summarise(cases = sum(cases)) 
+```
+
+```{r, echo=FALSE, fig.width=15, fig.height=8, warning=FALSE, message=FALSE}
+library(plotly)
+p <- ggplot(confirmed, aes(x=date, y=cases)) + geom_line(colour=NA) +  theme(legend.position = "none")
+p + geom_line(data = subset(confirmed,  country == "Norway"),color = "red") + theme(legend.position = "none") + ylim(c(0, 800)) + ylab("MW")
+```
+
+---
+## Number of series: 2
+
+```{r, echo=FALSE, fig.width=15, fig.height=8, warning=FALSE, message=FALSE}
+library(plotly)
+p <- ggplot(confirmed, aes(x=date, y=cases)) + geom_line(colour=NA) +  theme(legend.position = "none")
+p + geom_line(data = subset(confirmed,  country == "Norway"),color = "red") + geom_line(data = subset(confirmed,  country == "China"),color = "#7570b3") + theme(legend.position = "none") + ylim(c(0, 800)) + ylab("MW")
+```
+
+
+---
+
+## Number of series: 3
+
+```{r, echo=FALSE, fig.width=15, fig.height=8, warning=FALSE, message=FALSE}
+library(plotly)
+p <- ggplot(confirmed, aes(x=date, y=cases)) + geom_line(colour=NA) +  theme(legend.position = "none")
+p + geom_line(data = subset(confirmed,  country == "Norway"),color = "red") + geom_line(data = subset(confirmed,  country == "China"),color = "#7570b3") + geom_line(data = subset(confirmed,  country == "Australia"),color = "#1b9e77") +
+  theme(legend.position = "none") + ylim(c(0, 800)) + ylab("MW")
+```
+
+---
+
+
+## Number of series: 10
+
+```{r, echo=FALSE, fig.width=15, fig.height=8, warning=FALSE, message=FALSE}
+library(plotly)
+p <- ggplot(confirmed, aes(x=date, y=cases)) + geom_line(colour=NA) +  theme(legend.position = "none")
+p + geom_line(data = subset(confirmed,  country == "Norway"),color = "red") + geom_line(data = subset(confirmed,  country == "China"),color = "#7570b3") + geom_line(data = subset(confirmed,  country == "Australia"),color = "#1b9e77") +
+  geom_line(data = subset(confirmed,  country == "Sri Lanka"),color = "#ff7f00") +
+  geom_line(data = subset(confirmed,  country == "Ireland"),color = "#6a3d9a") +
+  geom_line(data = subset(confirmed,  country == "Colombia"),color = "#1f78b4") +
+  geom_line(data = subset(confirmed,  country == "Russia"),color = "#b2df8a") +
+  geom_line(data = subset(confirmed,  country == "Mexico"),color = "#fdbf6f") +
+  geom_line(data = subset(confirmed,  country == "Canada"),color = "#fb9a99") +
+  geom_line(data = subset(confirmed,  country == "Poland"),color = "#cab2d6") +
+  theme(legend.position = "none") + ylim(c(0, 800)) + ylab("MW")
+```
+
+---
+
+
+## Number of series: More than 100
+
+```{r, echo=FALSE, fig.width=15, fig.height=8, warning=FALSE, message=FALSE}
+library(plotly)
+p <- ggplot(confirmed, aes(x=date, y=cases, colour=country)) + geom_line() +  theme(legend.position = "none")
+p + theme(legend.position = "none") + ylim(c(0, 800)) + ylab("MW")
+```
