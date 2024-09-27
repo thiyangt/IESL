@@ -111,8 +111,8 @@ background-size: cover
   <p> Whether timber can be successfully used as a material for small wind turbine blades</p>
 </div>
 
-<div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: #49006a; font-size: 27px; color: white; font-weight: bold;">
-  <p> Simulated Data Set inspired from  Peterson and Clausen (2004)   </p>
+<div style="border: 2px solid ##feb24c; padding: 20px; width: 90%; margin: auto; background-color: #49006a; font-size: 30px; color: white; font-weight: bold;">
+  <p> Simulated data set inspired from  Peterson and Clausen (2004)   </p>
 </div>
 ---
 
