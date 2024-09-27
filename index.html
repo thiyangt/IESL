@@ -78,9 +78,57 @@ background-size: cover
 &lt;div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: black; font-size: 30px; color: white; font-weight: bold;"&gt;
   &lt;p&gt; Peterson P, Clausen PD. Timber for high efficiency small wind turbine blades. Wind Engineering. 2004 Jan;28(1):87-96. &lt;/p&gt;
 &lt;/div&gt;
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/pinwheels.jpg")
+background-size: cover
+
+&lt;div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: ##feb24c; font-size: 40px; color: black; font-weight: bold;"&gt;
+  &lt;p&gt; Whether timber can be successfully used as a material for small wind turbine blades&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: black; font-size: 30px; color: white; font-weight: bold;"&gt;
+  &lt;p&gt; Simulated Data Set &lt;/p&gt;
+&lt;/div&gt;
 ---
 
 .pull-left[
+
+
+```
+   Cycle Stress_MPa      Species
+1     10        142 Radiata Pine
+2     52        134 Radiata Pine
+3     94        131 Radiata Pine
+4    136        128 Radiata Pine
+5    179        123 Radiata Pine
+6    221        118 Radiata Pine
+7    263        117 Radiata Pine
+8    305        109 Radiata Pine
+9    347        109 Radiata Pine
+10   389        101 Radiata Pine
+11   431        100 Radiata Pine
+12   474         97 Radiata Pine
+13   516         86 Radiata Pine
+14   558         84 Radiata Pine
+15   600         80 Radiata Pine
+16    10        143    Hoop Pine
+17    52        133    Hoop Pine
+18    94        110    Hoop Pine
+19   136        107    Hoop Pine
+20   179        117    Hoop Pine
+21   221        107    Hoop Pine
+22   263         97    Hoop Pine
+23   305         99    Hoop Pine
+24   347        100    Hoop Pine
+25   389         99    Hoop Pine
+26   431         85    Hoop Pine
+27   474         82    Hoop Pine
+28   516         71    Hoop Pine
+29   558         76    Hoop Pine
+30   600         85    Hoop Pine
+```
 
 
 ]
@@ -90,6 +138,61 @@ background-size: cover
 
 ]
 
+---
+.pull-left[
+
+
+```
+   Cycle Stress_MPa      Species
+1     10        142 Radiata Pine
+2     52        134 Radiata Pine
+3     94        131 Radiata Pine
+4    136        128 Radiata Pine
+5    179        123 Radiata Pine
+6    221        118 Radiata Pine
+7    263        117 Radiata Pine
+8    305        109 Radiata Pine
+9    347        109 Radiata Pine
+10   389        101 Radiata Pine
+11   431        100 Radiata Pine
+12   474         97 Radiata Pine
+13   516         86 Radiata Pine
+14   558         84 Radiata Pine
+15   600         80 Radiata Pine
+16    10        143    Hoop Pine
+17    52        133    Hoop Pine
+18    94        110    Hoop Pine
+19   136        107    Hoop Pine
+20   179        117    Hoop Pine
+21   221        107    Hoop Pine
+22   263         97    Hoop Pine
+23   305         99    Hoop Pine
+24   347        100    Hoop Pine
+25   389         99    Hoop Pine
+26   431         85    Hoop Pine
+27   474         82    Hoop Pine
+28   516         71    Hoop Pine
+29   558         76    Hoop Pine
+30   600         85    Hoop Pine
+```
+
+]
+
+.pull-right[
+
+
+# What patterns or insights can you identify from the data? 
+]
+
+
+---
+
+``` r
+library(ggplot2)
+ggplot(data=final_data, aes(y=Stress_MPa, x=Cycle, col=Species)) +geom_point()
+```
+
+![](index_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 ---
 
 .pull-left[
@@ -102,6 +205,9 @@ background-size: cover
 
 # What patterns or insights can you identify from the data? 
 ]
+
+---
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

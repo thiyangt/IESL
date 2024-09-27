@@ -33,7 +33,7 @@ style_mono_accent(
  # header_font_google = google_font("Josefin Sans"),
   base_font_size = "17px",
 #  text_font_size = "1rem",
-# code_font_size = "1rem"
+ code_font_size = "1rem",
  #text_font_google   = google_font("Montserrat", "300", "300i")
   code_font_google   = google_font("Fira Mono")
 )
@@ -104,9 +104,50 @@ background-size: cover
 <div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: black; font-size: 30px; color: white; font-weight: bold;">
   <p> Peterson P, Clausen PD. Timber for high efficiency small wind turbine blades. Wind Engineering. 2004 Jan;28(1):87-96. </p>
 </div>
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/pinwheels.jpg")
+background-size: cover
+
+<div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: ##feb24c; font-size: 40px; color: black; font-weight: bold;">
+  <p> Whether timber can be successfully used as a material for small wind turbine blades</p>
+</div>
+
+<div style="border: 2px solid ##feb24c; padding: 20px; width: 80%; margin: auto; background-color: black; font-size: 30px; color: white; font-weight: bold;">
+  <p> Simulated Data Set </p>
+</div>
 ---
 
 .pull-left[
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, comment=""}
+set.seed(42)
+
+# Generate cycle values
+cycles <- round(seq(10, 600, length.out = 15) )
+
+
+slope <- -0.1 
+intercept_radiata <- 140  # 
+intercept_hoop <- 130  # 
+stress_radiata <- round(intercept_radiata + slope * cycles + rnorm(length(cycles), 0, 2)) 
+
+stress_hoop <- round(intercept_hoop + slope * cycles + rnorm(length(cycles), 0, 4))
+stress_hoop[1] <- 143
+stress_hoop[2] <- 133
+stress_hoop[15] <- 85
+
+data_radiata <- data.frame(Cycle = cycles, Stress_MPa = stress_radiata, Species = "Radiata Pine")
+data_hoop <- data.frame(Cycle = cycles, Stress_MPa = stress_hoop, Species = "Hoop Pine")
+
+# Combine the datasets
+final_data <- bind_rows(data_radiata, data_hoop)
+
+# Display the final data frame
+final_data
+
+```
 
 
 ]
@@ -116,6 +157,28 @@ background-size: cover
 
 ]
 
+---
+.pull-left[
+
+```{r, echo=FALSE, comment=NA}
+final_data
+```
+
+]
+
+.pull-right[
+
+
+# What patterns or insights can you identify from the data? 
+]
+
+
+---
+```{r}
+library(ggplot2)
+ggplot(data=final_data, aes(y=Stress_MPa, x=Cycle, col=Species)) +geom_point()
+
+```
 ---
 
 .pull-left[
@@ -128,3 +191,6 @@ background-size: cover
 
 # What patterns or insights can you identify from the data? 
 ]
+
+---
+
