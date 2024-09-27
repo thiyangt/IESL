@@ -471,3 +471,42 @@ knitr::include_graphics("img/scatter.png")
 ## Do not believe summary statistics on their own. 
 
 ## Always visualize your data for a complete understanding
+
+---
+class: inverse, center, middle
+
+# Branches of Statistics
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/pop1.png")
+background-size: cover
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/pop2.png")
+background-size: cover
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/pop3.png")
+background-size: cover
+
+---
+
+# Hypothesis testing
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/hy1.png")
+background-size: cover
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/hy2.png")
+background-size: cover
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/hy3.png")
+background-size: cover
