@@ -595,3 +595,19 @@ library(plotly)
 p <- ggplot(confirmed, aes(x=date, y=cases, colour=country)) + geom_line() +  theme(legend.position = "none")
 p + theme(legend.position = "none") + ylim(c(0, 800)) + ylab("MW")
 ```
+
+
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/supermarket.jpg")
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/ts.jpeg")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/jhu.png")
+background-size: contain
