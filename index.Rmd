@@ -749,76 +749,96 @@ background-image: url("img/rice2.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f1.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f2.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f3.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f4.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f5.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f6.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f7.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f8.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f9.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f10.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f11.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f12.png")
 background-size: contain
 
 ---
-class: title-slide, top, left, inverse
+class: title-slide, top, left
 background-image: url("img/f13.png")
 background-size: contain
 
 ---
 
+
+
+.pull-left[
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, out.height="50%"}
+
+include_graphics(here("img", "seer.png"))
+```
+
+]
+
+.pull-right[
+
+# `seer` Package in R
+
+- seer R package: https://github.com/thiyangt/seer
+
+- Also available on Comprehensive R Archive Network (CRAN)
+
+]
+
+---
 ## Publications
 
-![](img/seer.png)
-- seer R package: https://github.com/thiyangt/seer
 
 - Talagala, Thiyanga S., Rob J. Hyndman, and George Athanasopoulos. "Meta‐learning how to forecast time series." Journal of Forecasting 42, no. 6 (2023): 1476-1501.
 
