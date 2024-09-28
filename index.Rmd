@@ -889,7 +889,7 @@ include_graphics(here("img", "seer.png"))
 
 ## Acknowledgement
 
-- Images used in this project were sourced from Pixabay (https://pixabay.com).
+- Images used in the slides were sourced from Pixabay (https://pixabay.com).
 
 - All statistical plots are copyrighted and owned by Thiyanga S. Talagala.
 
