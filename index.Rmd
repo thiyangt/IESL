@@ -513,7 +513,6 @@ background-image: url("img/hy3.png")
 background-size: cover
 
 ---
-class: title-slide, top, left, inverse
 background-image: url("img/orange.jpeg")
 background-size: cover
 
@@ -883,6 +882,101 @@ include_graphics(here("img", "seer.png"))
 - Talagala, Thiyanga S., Feng Li, and Yanfei Kang. "FFORMPP: Feature-based forecast model performance prediction." International Journal of Forecasting 38, no. 3 (2022): 920-943.
 
 - Montero-Manso, Pablo, George Athanasopoulos, Rob J. Hyndman, and Thiyanga S. Talagala. "FFORMA: Feature-based forecast model averaging." International Journal of Forecasting 36, no. 1 (2020): 86-92.
+
+---
+background-image: url("img/melb.png")
+background-size: contain
+
+---
+background-image: url("img/train.jpg")
+background-size: contain
+
+# Melbourne Pedestrian Data 
+---
+
+## Hourly Pedestrian Data at Flagstaff Station: Jan, 2016 - April, 2016 
+
+```{r, echo=FALSE, comment=NA}
+library(rwalkr)
+sensors <- c("Flagstaff Station")
+library(dplyr)
+library(sugrrants)
+hourly_peds %>%
+  filter(Sensor_Name == "Flagstaff Station") |>
+  filter(Date < as.Date("2016-05-01")) 
+```
+
+
+---
+
+## Hourly Pedestrian Data at Flagstaff Station: Jan, 2016 - April, 2016 
+
+```{r, echo=FALSE, fig.width=15, fig.height=6}
+hourly_peds %>%
+  filter(Sensor_Name == "Flagstaff Station") |>
+  filter(Date < as.Date("2016-05-01")) %>% 
+  ggplot(aes(x = Date_Time, y = Hourly_Counts)) +
+  geom_line() +
+  theme_bw() +
+  theme(legend.position = "bottom")
+
+```
+
+---
+
+## Hourly Pedestrian Data at Flagstaff Station: Jan, 2016 - April, 2016 
+
+```{r, echo=FALSE, fig.width=12, fig.height=7}
+p <- hourly_peds %>%
+  filter(Sensor_Name == "Flagstaff Station") |>
+  filter(Date < as.Date("2016-05-01")) |>
+  mutate(Weekend = if_else(Day %in% c("Saturday", "Sunday"), "Weekend", "Weekday")) %>%
+  frame_calendar(x = Time, y = Hourly_Counts, date = Date) %>% 
+  ggplot(aes(x = .Time, y = .Hourly_Counts, group = Date, colour = Weekend)) +
+  geom_line() +
+  theme(legend.position = "bottom")
+prettify(p)
+```
+
+
+---
+class: inverse, center, middle
+
+**Myth 1**
+
+**Statistics is a boring subject.**
+
+
+
+---
+class: inverse, center, middle
+
+~~**Myth 1**~~
+
+**Statistics is a** ~~**boring subject**~~.
+
+
+
+ # **Statistics is a** very interesting and useful subject with so many applications.
+
+---
+class: inverse, center, middle
+
+**Myth 2**
+
+**Statistics hasn't changed much in years. It is just the same old stuff.**
+
+
+
+
+---
+class: inverse, center, middle
+
+~~**Myth 2**~~
+
+~~**Statistics hasn't changed much in years. It is just the same old stuff.**~~
+
+## The field of statistics has evolved significantly over time. It has also become a main componenet of many other disciplines.
 
 
 ---
