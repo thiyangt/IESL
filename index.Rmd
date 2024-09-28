@@ -514,6 +514,19 @@ background-size: cover
 
 ---
 class: title-slide, top, left, inverse
+background-image: url("img/orange.jpeg")
+background-size: cover
+
+# Data Analysis
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/i7.png")
+background-size: cover
+
+
+---
+class: title-slide, top, left, inverse
 background-image: url("img/electricity.jpg")
 background-size: contain
 
@@ -739,6 +752,31 @@ ggplot(pca_all_yearly, aes(x=PC1, y=PC2)) +
 ```
 
 ---
+
+.pull-left[
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+ggplot(pca_all_yearly, aes(x=PC1, y=PC2)) +   
+  geom_point(size=4, alpha=0.5) +
+  geom_density_2d( contour_var = "ndensity", col="#d95f02", lwd=1) +xlab("PCA Component 1")+ylab("PCA Component 2")+
+  theme(legend.title = element_blank()) +theme(aspect.ratio = 1, legend.position = "none")+
+  ggtitle("PCA projections") 
+```
+
+]
+
+.pull-right[
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(viridis)
+ggplot(pca_all_yearly, aes(x=PC1, y=PC2)) +  
+  geom_density_2d_filled() +xlab("PCA Component 1")+ylab("PCA Component 2")+
+  theme(legend.title = element_blank()) +theme(aspect.ratio = 1, legend.position = "none")+
+  ggtitle("PCA projections") 
+```
+
+
+]
+
+---
 class: title-slide, top, left, inverse
 background-image: url("img/rice1.png")
 background-size: contain
@@ -846,3 +884,17 @@ include_graphics(here("img", "seer.png"))
 
 - Montero-Manso, Pablo, George Athanasopoulos, Rob J. Hyndman, and Thiyanga S. Talagala. "FFORMA: Feature-based forecast model averaging." International Journal of Forecasting 36, no. 1 (2020): 86-92.
 
+
+---
+
+## Acknowledgement
+
+- Images used in this project were sourced from Pixabay (https://pixabay.com).
+
+- All statistical plots are copyrighted and owned by Thiyanga S. Talagala.
+
+## Contact
+
+Email: ttalagala@sjp.ac.lk
+
+Web: https://thiyanga.netlify.app/
