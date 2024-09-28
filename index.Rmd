@@ -252,7 +252,22 @@ ggplotly(p1)
 ```
 ]
 
+
 ---
+background-image: url("img/orange.jpeg")
+background-size: cover
+
+# Data Analysis
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/i7.png")
+background-size: cover
+
+
+---
+
+
 
 .pull-l[
 
@@ -510,17 +525,6 @@ background-size: cover
 ---
 class: title-slide, top, left, inverse
 background-image: url("img/hy3.png")
-background-size: cover
-
----
-background-image: url("img/orange.jpeg")
-background-size: cover
-
-# Data Analysis
-
----
-class: title-slide, top, left, inverse
-background-image: url("img/i7.png")
 background-size: cover
 
 
