@@ -780,6 +780,11 @@ ggplot(pca_all_yearly, aes(x=PC1, y=PC2)) +
 ]
 
 ---
+
+
+![](img/thi.gif)
+
+---
 class: title-slide, top, left, inverse
 background-image: url("img/rice1.png")
 background-size: contain
