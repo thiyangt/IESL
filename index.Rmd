@@ -530,7 +530,7 @@ background-size: contain
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, comment=NA}
 library(tidyverse)
 library(coronavirus)
-coronavirus <- coronavirus %>% mutate(cases = replace(cases, which(cases<0), NA))
+coronavirus <- coronavirus %>% mutate(cases = replace(cases, which(cases<0), 20))
 coronavirus <- coronavirus %>% mutate(cases = replace(cases, which(cases>800000), 800))
 #confirmed <- coronavirus %>% filter(type == "confirmed")
 confirmed <- coronavirus %>% 
@@ -611,3 +611,218 @@ background-size: contain
 class: title-slide, top, left, inverse
 background-image: url("img/jhu.png")
 background-size: contain
+
+---
+
+# Time Series Features
+
+- Cognostics: Computer-aided diagnostics (John W. Tukey, 1985)
+
+- Characteristics of time series
+
+- Summary measures of time series
+
+---
+class: title-slide, top, left
+background-image: url("img/mytree.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/tsf4.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/tsf3.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/tsf2.png")
+background-size: contain
+
+---
+
+## 10, 826 time series
+
+## 25 features
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, comment=NA}
+library(here)
+load(here("data","yearly_features_training.rda"))
+  
+as_tibble(yearly_features_training)
+```
+
+---
+class: inverse
+
+# Dimension Reduction Techniques
+
+- Principal component analysis
+
+- t-SNE
+
+- UMAP and many more
+
+---
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+calculate_pca <- function(feature_dataset){
+  pcaY_cal <- prcomp(feature_dataset, center = TRUE, scale = TRUE)
+  PCAresults <- data.frame(PC1 = pcaY_cal$x[, 1], 
+                           PC2 = pcaY_cal$x[, 2], 
+                           PC3 = pcaY_cal$x[, 3])
+  return(list(prcomp_out =pcaY_cal,pca_components = PCAresults))
+}
+
+pca_projection <- function(prcomp_out, data_to_project){
+  
+  PCA <- scale(data_to_project, prcomp_out$center, prcomp_out$scale) %*% prcomp_out$rotation
+  pca_projected <- data.frame(PC1=PCA[,1], PC2=PCA[,2], PC3=PCA[,3]) 
+  return(pca_projected)
+  
+}
+
+# yearly
+load("data/features_M4Y.rda")
+load("data/yearly_features_training.rda") ## M1 and M3 data only
+## Construct PCA space from simulated, M1 and M3 and then project M4-competition data
+pca_ref_calc <- calculate_pca(yearly_features_training)
+# vars_transformed <- apply(pca_ref_calc$prcomp_out$x, 2, var)
+# vars_transformed/sum(vars_transformed)
+ref_pca <- pca_ref_calc$pca_components
+## Project M4 yearly data
+M4Y_PCA <- pca_projection(pca_ref_calc$prcomp_out, features_M4Y)
+## draw PCA plot
+pca_all_yearly <- bind_rows(ref_pca, M4Y_PCA,  .id="source")
+pca_all_yearly$data <- c(rep("M1", 181),rep("M3",645),rep("Simulated", 10000), rep("M4", 23000))
+pca_all_yearly_ref <- pca_all_yearly %>% filter(!data == "M4")
+
+yearly_features_training2 <- bind_rows(features_M4Y, yearly_features_training)
+pca_ref_calc_yearly <- calculate_pca(yearly_features_training2)
+pca_ref_calc_yearly <- data.frame(pca_ref_calc_yearly$pca_components)
+minx <- min(pca_ref_calc_yearly$PC1)
+maxx <- max(pca_ref_calc_yearly$PC1)
+miny <- min(pca_ref_calc_yearly$PC2)
+maxy <- max(pca_ref_calc_yearly$PC2)
+
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+ggplot(pca_all_yearly, aes(x=PC1, y=PC2)) +   
+  geom_point(size=4) +xlab("PCA Component 1")+ylab("PCA Component 2")+
+  theme(legend.title = element_blank()) +theme(aspect.ratio = 1, legend.position = "none")+
+  ggtitle("PCA projection") 
+```
+
+---
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+ggplot(pca_all_yearly, aes(x=PC1, y=PC2)) +   
+  geom_point(alpha=0.5, size=4) +xlab("PCA Component 1")+ylab("PCA Component 2")+
+  theme(legend.title = element_blank()) +theme(aspect.ratio = 1, legend.position = "none")+
+  ggtitle("PCA projection") 
+```
+
+---
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+ggplot(pca_all_yearly, aes(x=PC1, y=PC2)) +   
+  geom_point(size=4, alpha=0.5) +
+  geom_density_2d( contour_var = "ndensity", col="#d95f02", lwd=1) +xlab("PCA Component 1")+ylab("PCA Component 2")+
+  theme(legend.title = element_blank()) +theme(aspect.ratio = 1, legend.position = "none")+
+  ggtitle("PCA projections") 
+```
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/rice1.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/rice2.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f1.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f2.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f3.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f4.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f5.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f6.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f7.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f8.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f9.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f10.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f11.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f12.png")
+background-size: contain
+
+---
+class: title-slide, top, left, inverse
+background-image: url("img/f13.png")
+background-size: contain
+
+---
+
+## Publications
+
+![](img/seer.png)
+- seer R package: https://github.com/thiyangt/seer
+
+- Talagala, Thiyanga S., Rob J. Hyndman, and George Athanasopoulos. "Meta‐learning how to forecast time series." Journal of Forecasting 42, no. 6 (2023): 1476-1501.
+
+- Talagala, Thiyanga S., Feng Li, and Yanfei Kang. "FFORMPP: Feature-based forecast model performance prediction." International Journal of Forecasting 38, no. 3 (2022): 920-943.
+
+- Montero-Manso, Pablo, George Athanasopoulos, Rob J. Hyndman, and Thiyanga S. Talagala. "FFORMA: Feature-based forecast model averaging." International Journal of Forecasting 36, no. 1 (2020): 86-92.
+
