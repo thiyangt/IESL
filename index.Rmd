@@ -638,10 +638,6 @@ background-size: contain
 
 - Summary measures of time series
 
----
-class: title-slide, top, left
-background-image: url("img/mytree.png")
-background-size: contain
 
 ---
 class: title-slide, top, left, inverse
